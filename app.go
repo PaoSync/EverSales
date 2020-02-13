@@ -1,12 +1,13 @@
 package main
 
 import (
-	_ "./models"
+	"./controllers"
+	"github.com/gorilla/mux"
 	"net/http"
 )
-func main() {
-	http.ListenAndServe(":8080", Router())
-	/*router := mux.NewRouter()
+
+func Router() http.Handler {
+	router := mux.NewRouter()
 	router.HandleFunc("/api/user/new", controllers.CreateAccount).Methods("POST")
 	router.HandleFunc("/api/user/login", controllers.Authenticate).Methods("POST")
 	router.HandleFunc("/api/user/logout", controllers.Logout).Methods("POST")
@@ -18,7 +19,7 @@ func main() {
 	router.HandleFunc("/api/properties/modify/{id}",controllers.ModifyProperty).Methods("POST")
 	router.HandleFunc("/api/properties/search",controllers.SearchProperties).Methods("POST")
 	router.HandleFunc("/api/visits/new/{propertyID}",controllers.NewVisit).Methods("POST")
-	fmt.Println(http.ListenAndServe(":8080", router));*/
-
+	router.HandleFunc("/api/visits/getForUser",controllers.GetVisitsForUser).Methods("GET")
+	router.HandleFunc("/api/visits/getForProperty",controllers.GetVisitsForProperty).Methods("GET")
+	return router
 }
-
