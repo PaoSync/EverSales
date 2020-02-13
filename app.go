@@ -21,5 +21,7 @@ func Router() http.Handler {
 	router.HandleFunc("/api/visits/new/{propertyID}",controllers.NewVisit).Methods("POST")
 	router.HandleFunc("/api/visits/getForUser",controllers.GetVisitsForUser).Methods("GET")
 	router.HandleFunc("/api/visits/getForProperty",controllers.GetVisitsForProperty).Methods("GET")
+	router.HandleFunc("/api/visits/ApproveVisit/{visitID}",controllers.ApproveVisit).Methods("POST")
+	router.HandleFunc("/api/visits/DenyVisit/{visitID}",controllers.DenyVisit).Methods("POST")
 	return router
 }
